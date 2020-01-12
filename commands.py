@@ -41,7 +41,7 @@ def get_fact():
 	return link.replace("\nTweet", "")
 
 
-def tell_me_something_interesting(command, history):
+def tell_me_something_interesting(command, history_obj, listener):
 	if "tell me something interesting" in command:
 		if random.randint(0, 100) < 10:
 			tts("no")
@@ -49,14 +49,14 @@ def tell_me_something_interesting(command, history):
 			tts(get_fact())
 
 
-def emulate_keyboard(command, history):
+def emulate_keyboard(command, history_obj, listener):
 	if OS == "Windows":
 		emulate_keyboard_win(command)
 	else:
 		raise NameError("Keyboard emulation capabilities are not yet implmented for {}".format(OS))
 
 
-def emulate_keyboard_win(command):
+def emulate_keyboard_win(command, history_obj, listener):
 	# if the music should be toggled then emulate a play music keyboard press.
 	triggers = ["start the music", "start playing music", "start music", "play music", "play some music", "stop music", "stop the music", "put on some music", "pause music"]
 	for trigger in triggers:
@@ -80,14 +80,14 @@ def emulate_keyboard_win(command):
 			win32api.keybd_event(vk_media_next_track, hardware_code)
 
 
-def toggle_audio_device(command, history):
+def toggle_audio_device(command, history_obj, listener):
 	# if toggle audio device is detected, then toggle audio device.
 	if ("toggle audio device" in command) | ("change audio device" in command) | ("use headset" in command) | ("use speaker" in command) | ("you speaker" in command) | ("you headset" in command):
 		tts("toggling audio device")
 		os.system("C:\\Users\\Kallah\\Dropbox\\projects\\batch\\run_file_from_exe.exe")
 
 
-def start_a_program(keys, command, history):
+def start_a_program(keys, command, history_obj, listener):
 	# big bertha can you open notepad
 	# starts a program from the programs folder using its name
 	# the triggers that enables the command to fire
@@ -111,7 +111,8 @@ def start_a_program(keys, command, history):
 					tts("Starting {}".format(command))
 				except FileNotFoundError:
 					# if the program is not recognized, print to user
-					history._print("{} is not recognized as a program".format(command))
+					history_obj.append("{} is not recognized as a program".format(command))
+					update(history_obj, listener)
 
 
 def tts(text):
@@ -129,7 +130,7 @@ def tts(text):
 	os.remove('audio\\tts.mp3')
 
 
-def set_a_timer(command, history):
+def set_a_timer(command, history_obj, listener):
 	# tested scenarios; all working
 	# big bertha set a 1 year, 3 month, two weeks, 5-minute and 20 second timer
 	# big bertha set a 5-minute and 20 second timer
@@ -197,11 +198,16 @@ def set_a_timer(command, history):
 		timer = int(duration.magnitude)
 
 		for i in range(0, timer):
-			history._print("time remaning: {}s".format(str(datetime.timedelta(seconds=timer - i))))
+			history_obj.append("time remaning: {}s".format(str(datetime.timedelta(seconds=timer - i))))
+			update(history_obj, listener)
 			time.sleep(1)
-		history._print("time remaning: {}s".format(str(datetime.timedelta(seconds=0))))
 
-		history._print("Times up, type something to turn the alarm off:")
+		history_obj.append("time remaning: {}s".format(str(datetime.timedelta(seconds=0))))
+		update(history_obj, listener)
+
+		history_obj.append("Times up, type something to turn the alarm off:")
+		update(history_obj, listener)
+
 		args = []
 		threading1 = threading.Thread(target=background, args=(args,))
 		threading1.daemon = True
@@ -215,7 +221,7 @@ def set_a_timer(command, history):
 				break
 
 
-def get_date_and_time(command, history):
+def get_date_and_time(command, history_obj, listener):
 	if ("what day is it" in command) | ("what is the time" in command) | ("what time is it" in command) | ("what date is it" in command) | ("what is the date" in command):
 		now = datetime.datetime.now()
 		today = datetime.datetime.today()

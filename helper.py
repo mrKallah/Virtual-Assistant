@@ -58,43 +58,43 @@ class history:
 
 		self.update()
 
-# def print_listening(history_obj, listener):
-# 	listening = listener[0]
-# 	if listening == "":
-# 		listening = "Listening "
-#
-# 	if listening == "Listening ":
-# 		listening = "Listening ."
-#
-# 	elif listening == "Listening .":
-# 		listening = "Listening .."
-#
-# 	elif listening == "Listening ..":
-# 		listening = "Listening ..."
-#
-# 	elif listening == "Listening ...":
-# 		listening = "Listening "
-#
-# 	listener[0] = listening
-# 	update(history_obj, listener)
-#
-#
-# def update(command_history, listener):
-# 	if OS == "Windows":
-# 		tmp = subprocess.call('cls',shell=True)
-# 	else:
-# 		tmp = subprocess.call('clear', shell=True)
-#
-# 	size = len(command_history)
-# 	print(size)
-# 	if size < 10:
-# 		min = 0
-# 		max = size
-# 	else:
-# 		min = -10
-# 		max = 0
-#
-#
-# 	for i in range(min, max):
-# 		print(command_history[i])
-# 	print(listener[0])
+def print_listening(history_obj, listener):
+	listening = listener[0]
+	if listening == "":
+		listening = "Listening "
+
+	if listening == "Listening ":
+		listening = "Listening ."
+
+	elif listening == "Listening .":
+		listening = "Listening .."
+
+	elif listening == "Listening ..":
+		listening = "Listening ..."
+
+	elif listening == "Listening ...":
+		listening = "Listening "
+
+	listener[0] = listening
+	update(history_obj, listener)
+
+
+def update(command_history, listener):
+	if OS == "Windows":
+		tmp = subprocess.call('cls',shell=True)
+	else:
+		tmp = subprocess.call('clear', shell=True)
+
+	size = len(command_history)
+	print(size)
+	if size < 10:
+		min = 0
+		max = size
+	else:
+		min = -10
+		max = 0
+
+
+	for i in range(min, max):
+		print(command_history[i])
+	print(listener[0])
