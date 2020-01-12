@@ -39,7 +39,7 @@ def exec_commands(command, history):
 		else:
 			raise ModuleNotFoundError("Support for {} has not yet been implemented, apologies for any inconvenience\nCurrently supported platforms are: \n{}".format(OS, implemented))
 	else:
-		history.print("Unknown command: {}".format(command))
+		history._print("Unknown command: {}".format(command))
 
 def contains_key(command):
 	command = command.lower()
@@ -52,6 +52,6 @@ def contains_key(command):
 # if __name__ == "__main__":
 # 	from helper import history
 # 	history = history("test")
-# 	history.print("command testing")
+# 	history._print("command testing")
 # 	while True:
 # 		get_commands(input("write a command: "))

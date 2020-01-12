@@ -111,7 +111,7 @@ def start_a_program(keys, command, history):
 					tts("Starting {}".format(command))
 				except FileNotFoundError:
 					# if the program is not recognized, print to user
-					history.print("{} is not recognized as a program".format(command))
+					history._print("{} is not recognized as a program".format(command))
 
 
 def tts(text):
@@ -197,11 +197,11 @@ def set_a_timer(command, history):
 		timer = int(duration.magnitude)
 
 		for i in range(0, timer):
-			history.print("time remaning: {}s".format(str(datetime.timedelta(seconds=timer - i))))
+			history._print("time remaning: {}s".format(str(datetime.timedelta(seconds=timer - i))))
 			time.sleep(1)
-		history.print("time remaning: {}s".format(str(datetime.timedelta(seconds=0))))
+		history._print("time remaning: {}s".format(str(datetime.timedelta(seconds=0))))
 
-		history.print("Times up, type something to turn the alarm off:")
+		history._print("Times up, type something to turn the alarm off:")
 		args = []
 		threading1 = threading.Thread(target=background, args=(args,))
 		threading1.daemon = True

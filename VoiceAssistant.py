@@ -53,7 +53,7 @@ def translate(audio, history_obj):
 
 		# if the output is not empty display it to the user
 		if output != "":
-			history_obj[0].print(": {}".format(output))
+			history_obj[0]._print(": {}".format(output))
 
 		# convert the output to lowercase for easier comparisons
 		output = output.lower()
@@ -61,7 +61,7 @@ def translate(audio, history_obj):
 		# check if the key or something close to the key was spoken in the string
 		if contains_key(output):
 			# if key is present, convert key into command
-			exec_commands(output, history)
+			exec_commands(output, history_obj)
 
 if __name__ == "__main__":
 	hist = history("test")
@@ -71,12 +71,12 @@ if __name__ == "__main__":
 	history_obj = manager.list()
 	history_obj.append(hist)
 
-	history_obj[0].print("Calibrating microphone, please do not talk for 5 seconds...")
-	history_obj[0].print("asdasdasd")
+	history_obj[0]._print("Calibrating microphone, please do not talk for 5 seconds...")
+	history_obj[0]._print("asdasdasd")
 	with sr.Microphone(sample_rate=sample_rate, chunk_size=chunk_size) as source:
 		r.adjust_for_ambient_noise(source, duration=5)
 	r.dynamic_energy_threshold = True
-	history_obj[0].print("Calibrated")
+	history_obj[0]._print("Calibrated")
 
 	size = (10, 10, 3)
 	on = np.ones(size)
@@ -86,5 +86,7 @@ if __name__ == "__main__":
 	p.start()
 	p = Process(target=translate, args=(audio_result, history_obj))
 	p.start()
-	history_obj[0].print("Listening ...")
+	history_obj[0]._print("Listening ...")
 	p.join()
+
+	# Test
