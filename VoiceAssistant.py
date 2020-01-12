@@ -93,5 +93,3 @@ if __name__ == "__main__":
 	p = Process(target=translate, args=(audio_result, history_obj, listener))
 	p.start()
 	p.join()
-
-	# Test
