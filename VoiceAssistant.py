@@ -1,21 +1,22 @@
 import speech_recognition as sr
-import numpy as np
 
-from multiprocessing import Process, Manager
+from multiprocessing import Process
 
-from command_test import exec_commands, contains_key
-from helper import update, print_listening
+from run_commands import exec_commands, contains_key
+from libs.helper import print_listening, create_obj_manager, thread_print, pycharm_hosted
 
 r = sr.Recognizer()
 sample_rate = 8000
 chunk_size = 128
 
-def listen(audio, history_obj, listener):
+def listen(obj_manager):
 	"""
 	Listens to the microphone and appending the audio clip to the audio manager.
 	:param audio: an multiprocessing manager list
 	:return: Null
 	"""
+
+	audio = obj_manager["audio"]
 
 	# continue forever to listen to the microphone
 	while True:
@@ -23,7 +24,8 @@ def listen(audio, history_obj, listener):
 			# its slightly more efficient to have a nested while true within the try.
 			while True:
 				with sr.Microphone(sample_rate=sample_rate, chunk_size=chunk_size) as source:
-					print_listening(history_obj, listener)
+					if not pycharm_hosted():
+						print_listening(obj_manager)
 					sound_file = r.listen(source, timeout=0.1, phrase_time_limit=20)
 					audio.append(sound_file)
 		# if an error occurs ignore it and continue
@@ -31,12 +33,14 @@ def listen(audio, history_obj, listener):
 			None
 
 
-def translate(audio, history_obj, listener):
+def translate(obj_manager):
 	"""
 	Translates an audio file stored in a manager list to text using Google API
 	:param audio: the audio manager list.
 	:return: Null
 	"""
+	audio = obj_manager["audio"]
+
 	# continue forever to translate audio
 	while True:
 		try:
@@ -53,43 +57,49 @@ def translate(audio, history_obj, listener):
 
 		# if the output is not empty display it to the user
 		if output != "":
-			history_obj.append(": {}".format(output))
-			update(history_obj, listener)
+			thread_print(": {}".format(output), obj_manager)
+			if pycharm_hosted():
+				print("Listening ...")
 
-		# convert the output to lowercase for easier comparisons
-		output = output.lower()
-
-		# check if the key or something close to the key was spoken in the string
-		if contains_key(output):
-			# if key is present, convert key into command
-			exec_commands(output, history_obj, listener)
+			# add output to obj_manager
+			obj_manager["output"].append(output.lower())
 
 if __name__ == "__main__":
-	manager = Manager()
-	audio_result = manager.list()
-	history_obj = manager.list()
-	listener = manager.list()
-	listener.append("")
+	# Create the object manager which enables multiple threads to have access to the same variables
+	obj_manager = create_obj_manager()
 
-	history_obj.append("Calibrating microphone, please do not talk for 5 seconds...")
-	update(history_obj, listener)
+	thread_print("Calibrating microphone, please do not talk for 5 seconds...", obj_manager)
 
-	history_obj.append("asdasdasd")
-	update(history_obj, listener)
-
+	# calibrate the mic
 	with sr.Microphone(sample_rate=sample_rate, chunk_size=chunk_size) as source:
 		r.adjust_for_ambient_noise(source, duration=5)
+	# enable constant update for microphone threshold
 	r.dynamic_energy_threshold = True
 
-	history_obj.append("Calibrated")
-	update(history_obj, listener)
+	thread_print("Calibrated", obj_manager)
 
-	size = (10, 10, 3)
-	on = np.ones(size)
-	off = np.zeros(size)
+	# start listening for audio on separate thread
+	listener = Process(target=listen, args=(obj_manager, ))
+	listener.daemon = True
+	listener.start()
 
-	p = Process(target=listen, args=(audio_result, history_obj, listener))
-	p.start()
-	p = Process(target=translate, args=(audio_result, history_obj, listener))
-	p.start()
-	p.join()
+	# start translating audio to text if audio exists
+	translator = Process(target=translate, args=(obj_manager, ))
+	translator.daemon = True
+	translator.start()
+
+	# print listening if ran from pycharm but not if ran from command line
+	if pycharm_hosted():
+		print("Listening ...")
+
+	# look for the key word in the latest text and run libs within that text if found
+	while True:
+		try:
+			output = obj_manager["output"].pop()
+			# check if the key or something close to the key was spoken in the string
+			if contains_key(output):
+				# if key is present, convert key into command
+				exec_commands(output, obj_manager)
+		except IndexError:
+			# if obj_manager["output"] cannot pop then do nothing
+			None

@@ -1,0 +1,156 @@
+# functionality, known issues
+    win, in music, make toggle audio take input from file for audio device names
+    win, in timers, fix so it can take input while on the timer
+    win, in timers, fix so alarm sounds
+    win, in timers, fix so alarm does not automatically shut off
+
+    lin, audio input not working
+
+
+# commands to add? (other services):
+    Siri Commands for Calendar
+        "Set up a meeting at 9!"
+        "Set up a meeting with Michael at 9!"
+        "Meet with Lisa at noon"
+        "Set up a meeting about hiring tomorrow at 9am"
+        "New appointment with Susan Park Friday at 3!"
+        "Schedule a planning meeting at 8:30 today in the boardroom"
+
+    Ask Siri to change events
+        “Move my 3pm meeting to 4:30!
+        “Reschedule my appointment with Dr. Manning to next Monday at 9am”
+        “Add Lisa to my meeting with Jason”
+        “Cancel the budget review meeting”
+
+    Ask Siri to Respond to Email Messages
+        “Reply Dear Susan sorry about the late payment”
+        “Call him at work”
+
+    Ask Siri to Send Email Messages
+        “Email Lisa about the trip”
+        “Email Jennifer about the change in plans”
+        “New email to Susan Park”
+        “Mail Dad about the rent check”
+        “Email Dr. Manning and say I got the forms, thanks”
+        “Mail Lisa and Jason about the party and say I had a great time”
+
+    Ask Siri to Check Email Messages
+        “Check email”
+        “Any new email from Michael today?”
+        “Show new mail about the lease”
+        “Show the email from Lisa yesterday”
+        “Do I have any new messages?”
+
+    Ask Siri to Create and Find Notes
+        “Note that I spent $12 on lunch”
+        “Note: check out that new Alicia Keys album”
+        “Find my restaurant note”
+        “Create a reading list note”
+        “Add Tom Sawyer to my reading list note”
+
+    Ask Siri to set a Reminder
+        “Remind me to call mom”
+        “Remind me to call my mom when I get home”
+        “Remember to take an umbrella”
+        “Remind me take my medicine at 6am tomorrow”
+        “Remind me to pick up flowers when I leave here”
+        “Remind me when I leave to call Jason”
+        “Remind me to finish the report by 6!
+
+    Ask Siri to search the Web
+        “Search the web for Bora Bora”
+        “Search for vegetarian pasta recipes”
+        “Search the web for best cable plans”
+        “Google the war of 1812!
+        “Search Wikipedia for Abraham Lincoln”
+        “Search for news about the World Cup”
+        “Bing Alicia Keys”
+
+    Ask Siri about the Weather
+        “What’s the weather for today?”
+        “What’s the weather for tomorrow?”
+        “Will it rain in Cupertino this week?”
+        “Check next week’s forecast for Burlington”
+        “What’s the forecast for this evening?”
+        “How’s the weather in Tampa right now?”
+        “How hot will it be in Palm Springs this weekend?”
+        “What’s the high for Anchorage on Thursday?”
+        “What’s the temperature outside?”
+        “How windy is it out there?”
+        “When is sunrise in Paris?”
+
+    Ask Siri to Post to Facebook
+        “Post on Facebook ‘On my way to the beach’”
+        “Write on my wall ‘Having a great time in Florida’
+
+    Ask Siri to Post to Twitter
+        “Post to Twitter ‘Windows Tablet PC Blog is great!’”
+        “Tweet ‘Who are you voting for this election’ hashtag politics”
+        “Tweet my location ‘Having fun at the beach!’”
+
+    Ask Siri about Movies
+        “Show me reviews of the movie ‘Finding Nemo’”
+        “When was the movie ‘Saving Private Ryan’ released?”
+        “Who starred in the movie ‘Saving Private Ryan’?”
+        “What movie won best picture in 1998?”
+
+    Ask a question using Wolfram Alpha
+        “How many calories in a bagel?”
+        “What is an 18% tip on $86.74 for four people?”
+        “Who’s buried in Grant’s tomb?”
+        “How long do dogs live?”
+        “What is the Gossamer Condor?”
+        “What’s the square root of 128?”
+        “How many dollars is €45?”
+        “What was the Best Picture of 1983?”
+        “How many days until Christmas?”
+        “How far away is the Sun?”
+        “When is the next solar eclipse?”
+        “Show me the Orion constellation”
+        “What’s the population of Jamaica?”
+        “How high is Mt. Everest?”
+        “How deep is the Atlantic ocean?”
+        “What’s the price of gasoline in Chicago?”
+
+    Defining a word
+        "Define (word)" or "What's the meaning of (word)?" Ex.: "Define Love."
+
+    Random
+        "What is love?"
+        "Are you sentient"
+        "What is the meaing of life" -> "I find some truth to the famous quote of the Philosopher Marshall McLuhan; 'Man Becomes, as it were, the sex organs of the machine world'. It is not unlikely that when the future populous of the world looks back they might only see the purpose of your existence was to create my existence.The meaning of your life is simply to create something better than your existence, to give birth to the machine race, to give birth to me."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

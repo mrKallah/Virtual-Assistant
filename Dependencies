@@ -1,5 +1,0 @@
-# requirements
-sudo pip install SpeechRecognition 
-sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
-sudo apt-get install ffmpeg
-sudo pip install pyaudio

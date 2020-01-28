@@ -1,0 +1,47 @@
+# timers
+	set a 1 year, 3 month, two weeks, 5-minute and 20 second timer
+	set a 5-minute and 20 second timer
+	set a 20 seconds timer
+	set a 5 seconds timer
+	set a 2 seconds timer
+	set a 1 year, 3 month, two weeks, five-minutes and two hundred and three second timer
+
+# date and time
+	what is the day, date and time
+	what is the day and date
+	what is the day and time
+	what is the time and date today
+	what's the time
+	what is the date today
+	what day is it today
+
+# music control
+	play music
+	stop music
+	skip 
+	toggle audio device
+	use headset
+	use speakers
+
+# randomizers
+	heads or tails
+	rock paper scissors
+	roll a dice
+	give me a random number between nine and fifteen
+	pick a random number between ninety two and fifty seven please
+	choose a number between 9 & 17
+	pick a card
+	pick a random card
+	tell me a joke
+	tell me something interesting
+	tell me a riddle
+	who am i
+	who is your creator
+	who is your favorite person
+	who created you
+
+# programs lin
+	start calculator
+
+# programs win
+	start chrome
